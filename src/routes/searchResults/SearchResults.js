@@ -4,6 +4,7 @@ class SearchResults extends PureComponent {
     render() {
         return (
             <div>
+                <p>search result</p>
             </div>
         );
     }

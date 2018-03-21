@@ -1,0 +1,29 @@
+.AppBar .logo {
+    height: 54px;
+    padding: 5px 16px 5px 16px;
+}
+
+div.user-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.user-name {
+    padding-left: 32px;
+    padding-right: 16px;
+    font-size: smaller;
+}
+
+.AppBar {
+    font-weight: 100;
+}
+
+#root > div > div > button > div > svg > path {
+    fill: white;
+}
+
+/*#root > div > div.AppBar {*/
+    /*background-color: white !important;*/
+/*}*/
