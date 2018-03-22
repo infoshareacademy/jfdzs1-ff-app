@@ -7,11 +7,12 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from "./components/appBar/AppBar"
 import Seba from './img/Seba.jpg';
+import Menu from './components/menu/Menu'
 
 import React, {PureComponent} from 'react';
 import {
-    blueGrey500, blueGrey700,
-    blueGrey100, blueGrey300, blueGrey400,
+    grey500, grey700,
+    grey100, grey300, grey400,
     white, darkBlack, fullBlack,
 } from 'material-ui/styles/colors'
 import {fade} from 'material-ui/utils/colorManipulator';
@@ -25,18 +26,18 @@ const muiTheme = getMuiTheme({
     typography: typography,
     fontFamily: 'Roboto, sans-serif',
     palette: {
-        primary1Color: blueGrey500,
-        primary2Color: blueGrey700,
-        primary3Color: blueGrey400,
+        primary1Color: white,
+        primary2Color: grey700,
+        primary3Color: grey400,
         accent1Color: red,
-        accent2Color: blueGrey100,
-        accent3Color: blueGrey500,
-        textColor: white,
+        accent2Color: grey100,
+        accent3Color: grey500,
+        textColor: darkBlack,
         alternateTextColor: darkBlack,
         canvasColor: white,
-        borderColor: blueGrey300,
+        borderColor: grey300,
         disabledColor: fade(darkBlack, 0.3),
-        pickerHeaderColor: blueGrey500,
+        pickerHeaderColor: grey500,
         clockCircleColor: fade(darkBlack, 0.07),
         shadowColor: fullBlack,
     },
@@ -48,7 +49,8 @@ class App extends PureComponent {
         super(props);
         this.state = {
             userName: 'Sebastian Maria Drzewiecki',
-            userPhotoURL: Seba
+            userPhotoURL: Seba,
+            open: false
         };
     }
 
@@ -56,6 +58,11 @@ class App extends PureComponent {
         alert('onClick triggered on the title component');
     };
 
+    handleClose = () => this.setState({open: false});
+
+    handleOnLeftIconButtonClick = () => this.setState({open: !this.state.open});
+
+    onRequestChange = (open) => this.setState({open});
 
     render() {
         return (
@@ -66,6 +73,13 @@ class App extends PureComponent {
                             userName={this.state.userName}
                             userPhotoURL={this.state.userPhotoURL}
                             handleClick={this.handleClick}
+                            handleOnLeftIconButtonClick={this.handleOnLeftIconButtonClick}
+                        />
+                        <Menu
+                            handleClose={this.handleClose}
+                            handleToggle={this.handleToggle}
+                            open={this.state.open}
+                            onRequestChange={this.onRequestChange}
                         />
                         <Route exact path='/' component={login ? Dashboard : SignInForm}/>
                         <Route path='/favourite' component={FavouriteCars}/>

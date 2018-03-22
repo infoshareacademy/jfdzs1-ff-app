@@ -13,16 +13,16 @@ div.user-area {
 div.user-name {
     padding-left: 32px;
     padding-right: 16px;
-    font-size: smaller;
+    /*font-size: smaller;*/
 }
 
 .AppBar {
     font-weight: 100;
 }
 
-#root > div > div > button > div > svg > path {
-    fill: white;
-}
+/*#root > div > div > button > div > svg > path {*/
+    /*fill: white;*/
+/*}*/
 
 /*#root > div > div.AppBar {*/
     /*background-color: white !important;*/

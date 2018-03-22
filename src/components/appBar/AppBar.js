@@ -7,9 +7,10 @@ import FlatButton from 'material-ui/FlatButton';
 
 import Avatar from 'material-ui/Avatar';
 
-const NavigationBar = ({userPhotoURL, userName, handleClick, ...props}) => (
+const NavigationBar = ({userPhotoURL, userName, handleClick, handleOnLeftIconButtonClick, ...props}) => (
     <AppBar
         className="AppBar"
+        onLeftIconButtonClick={handleOnLeftIconButtonClick}
         title={<img src={motogol_logo} alt="logo motogol" className="logo"/>}
         onTitleClick={handleClick}
         iconElementRight={
