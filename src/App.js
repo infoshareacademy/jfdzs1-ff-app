@@ -22,7 +22,10 @@ import typography from 'material-ui/styles/typography';
 const login = true;
 const red = "#c30000";
 const muiTheme = getMuiTheme({
-    spacing: spacing,
+
+    spacing: Object.assign(spacing, {
+        desktopKeylineIncrement: 70
+    }),
     typography: typography,
     fontFamily: 'Roboto, sans-serif',
     palette: {
@@ -54,9 +57,9 @@ class App extends PureComponent {
         };
     }
 
-    handleClick = () => {
-        alert('onClick triggered on the title component');
-    };
+    // handleClick = () => {
+    //     alert('onClick triggered on the title component');
+    // };
 
     handleClose = () => this.setState({open: false});
 
