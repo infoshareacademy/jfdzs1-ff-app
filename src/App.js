@@ -5,15 +5,16 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import SignInForm from "./routes/signInForm/SignInForm";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import AppBar from "./components/appBar/AppBar"
+import AppBar from "./components/appBar/AppBar";
 import Seba from './img/Seba.jpg';
-import Menu from './components/menu/Menu'
+import Menu from './components/menu/Menu';
 
 import React, {PureComponent} from 'react';
 import {
     grey500, grey700,
     grey100, grey300, grey400,
-    white, darkBlack, fullBlack,
+    white, darkBlack, fullBlack, deepOrangeA200
+
 } from 'material-ui/styles/colors'
 import {fade} from 'material-ui/utils/colorManipulator';
 import spacing from 'material-ui/styles/spacing';
@@ -21,10 +22,11 @@ import typography from 'material-ui/styles/typography';
 
 const login = true;
 const red = "#c30000";
+
 const muiTheme = getMuiTheme({
 
     spacing: Object.assign(spacing, {
-        desktopKeylineIncrement: 70
+        desktopKeylineIncrement: 70,
     }),
     typography: typography,
     fontFamily: 'Roboto, sans-serif',
@@ -44,6 +46,9 @@ const muiTheme = getMuiTheme({
         clockCircleColor: fade(darkBlack, 0.07),
         shadowColor: fullBlack,
     },
+    svgIcon: {
+        color: deepOrangeA200
+    }
 });
 
 class App extends PureComponent {
@@ -57,10 +62,6 @@ class App extends PureComponent {
         };
     }
 
-    // handleClick = () => {
-    //     alert('onClick triggered on the title component');
-    // };
-
     handleClose = () => this.setState({open: false});
 
     handleOnLeftIconButtonClick = () => this.setState({open: !this.state.open});
@@ -71,23 +72,25 @@ class App extends PureComponent {
         return (
             <BrowserRouter>
                 <MuiThemeProvider muiTheme={muiTheme}>
-                    <div>
-                        <AppBar
-                            userName={this.state.userName}
-                            userPhotoURL={this.state.userPhotoURL}
-                            handleClick={this.handleClick}
-                            handleOnLeftIconButtonClick={this.handleOnLeftIconButtonClick}
-                        />
-                        <Menu
-                            handleClose={this.handleClose}
-                            handleToggle={this.handleToggle}
-                            open={this.state.open}
-                            onRequestChange={this.onRequestChange}
-                        />
-                        <Route exact path='/' component={login ? Dashboard : SignInForm}/>
-                        <Route path='/favourite' component={FavouriteCars}/>
-                        <Route path='/result' component={SearchResults}/>
-                    </div>
+                    {this.state.userName ?
+                        <div>
+                            <AppBar
+                                userName={this.state.userName}
+                                userPhotoURL={this.state.userPhotoURL}
+                                handleClick={this.handleClick}
+                                handleOnLeftIconButtonClick={this.handleOnLeftIconButtonClick}
+                            />
+                            <Menu
+                                handleClose={this.handleClose}
+                                handleToggle={this.handleToggle}
+                                open={this.state.open}
+                                onRequestChange={this.onRequestChange}
+                            />
+                            <Route exact path='/' component={login ? Dashboard : SignInForm}/>
+                            <Route path='/favourite' component={FavouriteCars}/>
+                            <Route path='/result' component={SearchResults}/>
+                        </div> : <SignInForm/>}
+
                 </MuiThemeProvider>
             </BrowserRouter>
         );
