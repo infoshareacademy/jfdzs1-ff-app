@@ -1,13 +1,13 @@
 import React from 'react';
+
+import {Link} from 'react-router-dom'
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import {Link} from 'react-router-dom'
 import './Menu.css'
 import motogol_logo from '../../img/motogol_logo.png';
 
 const Menu = ({handleClose, open, onRequestChange, ...props}) => (
     <div>
-
         <Drawer
             docked={false}
             width={300}
