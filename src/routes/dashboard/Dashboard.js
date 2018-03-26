@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
 
+
 class Dashboard extends PureComponent {
     render() {
         return (
-            <div className="dashboard">
-               <p>dashboard</p>
+            <div className="Dashboard">
+                <p>dashboard</p>
             </div>
         );
     }

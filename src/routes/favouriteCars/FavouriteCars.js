@@ -4,6 +4,7 @@ class FavouriteCars extends PureComponent {
     render() {
         return (
             <div>
+                <p>favourite cars</p>
             </div>
         );
     }
