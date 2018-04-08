@@ -15,7 +15,7 @@ class SearchingForm extends PureComponent {
             .then(json => {
                 console.log(json);
                 this.setState({
-                    fetchedData
+                    fetchedData: json
                 });
             });
     }
@@ -27,7 +27,8 @@ class SearchingForm extends PureComponent {
                 hintText="np. Audi"
                 floatingLabelText="Wyszukaj auto"
                 />
-                <div>{this.fetchData}</div>
+                <button onClick={this.fetchData}>Szukaj</button>
+                <div>{this.state.fetchedData}</div>
             </div>
         );
     }
