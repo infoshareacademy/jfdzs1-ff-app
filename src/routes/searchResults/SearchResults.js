@@ -6,6 +6,9 @@ class SearchResults extends PureComponent {
         return (
             <div>
                 <SearchingForm/>
+
+                <p>search result</p>
+
             </div>
         );
     }

@@ -1,0 +1,20 @@
+.AppBar .logo {
+    height: 54px;
+    padding: 10px 16px 10px 16px;
+}
+
+div.user-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.user-name {
+    padding-left: 16px;
+    padding-right: 8px;
+}
+
+.AppBar {
+    font-weight: 100;
+}

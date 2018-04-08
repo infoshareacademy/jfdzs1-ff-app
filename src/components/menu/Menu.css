@@ -1,0 +1,19 @@
+.menuItemLink {
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+}
+
+img.logo {
+    height: 54px;
+    padding: 35px 0 25px 0;
+}
+
+.logoWrapper {
+    border-bottom: solid #303030 1px;
+}
+
+.allMenuLinks {
+    padding-top: 30px;
+    text-align: center;
+}
