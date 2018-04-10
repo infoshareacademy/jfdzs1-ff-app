@@ -1,13 +1,17 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 
-class SignInForm extends PureComponent {
-    render() {
-        return (
-            <div>
-                <p>muaaaaahaha</p>
-            </div>
-        );
-    }
-}
+const SignInForm = (user, openGoogleSignIn) => (
+    <div>
+        <label><b>Username {user.displayName}</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required/>
+
+        <label><b>Email</b></label>
+        <input type="email" placeholder="Enter Email" name="email" required/>
+
+        <button type="submit" onClick={openGoogleSignIn}>Sign in</button>
+    </div>
+
+);
+
 
 export default SignInForm;
