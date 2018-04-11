@@ -1,17 +1,21 @@
 import React from 'react';
 
-const SignInForm = (user, openGoogleSignIn) => (
-    <div>
-        <label><b>Username {user.displayName}</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required/>
-
-        <label><b>Email</b></label>
-        <input type="email" placeholder="Enter Email" name="email" required/>
-
-        <button type="submit" onClick={openGoogleSignIn}>Sign in</button>
-    </div>
-
-);
+const SignInForm = ({user, openGoogleSignIn}) => {
+    if(user) {
+        return (
+            <section className="user">
+                <p className="user-name">{user.displayName}</p>
+                <button type="button" className="sign-out">Sign out</button>
+            </section>
+        );
+    } else {
+        return (
+            <section className="user">
+                <button type="button" className="sign-in" onClick={openGoogleSignIn}>Sign in with Google</button>
+            </section>
+        )
+    }
+};
 
 
 export default SignInForm;
