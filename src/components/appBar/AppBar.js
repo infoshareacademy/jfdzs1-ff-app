@@ -8,18 +8,18 @@ import {Link} from 'react-router-dom';
 import ActionAccountCircle from 'react-material-icons/icons/action/account-circle';
 import Avatar from 'material-ui/Avatar';
 
-const NavigationBar = ({userPhotoURL, userName, handleClick, handleOnLeftIconButtonClick, ...props}) => (
+const NavigationBar = ({props}) => (
     <AppBar
         className="AppBar"
-        onLeftIconButtonClick={handleOnLeftIconButtonClick}
+        onLeftIconButtonClick={props.handleOnLeftIconButtonClick}
         title=
             {<Link className="menuItemLink" to="/">
                 {<img src={motogol_logo} alt="logo motogol" className="logo"/>}
             </Link>}
         iconElementRight={
             <div className="user-area" >
-                {userPhotoURL ? <Avatar size={24} src={userPhotoURL}/> : <ActionAccountCircle/>}
-                <div className="user-name">{userName}</div>
+                {props.userPhotoURL ? <Avatar size={24} src={props.userPhotoURL}/> : <ActionAccountCircle/>}
+                <div className="user-name">{props.userName}</div>
                 <FlatButton label="Wyloguj"/>
             </div>
         }
