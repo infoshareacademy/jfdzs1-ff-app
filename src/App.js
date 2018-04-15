@@ -8,7 +8,7 @@ import Menu from './components/menu/Menu';
 import Dashboard from './routes/dashboard/Dashboard';
 import FavouriteCars from './routes/favouriteCars/FavouriteCars';
 import SearchResults from './routes/searchResults/SearchResults';
-import SignInForm from "./routes/signInForm/SignInForm";
+import SignInForm from "./routes/signInForm/signInForm.container";
 
 import {muiTheme} from "./styles";
 import Seba from './img/Seba.jpg';
@@ -18,7 +18,7 @@ class App extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            userName: 'Sebastian Maria Drzewiecki',
+            userName: '', //Sebastian Maria Drzewiecki
             userPhotoURL: Seba,
             open: false
         };
