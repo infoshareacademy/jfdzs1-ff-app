@@ -16,6 +16,4 @@ const SignInForm = ({user, openGoogleSignIn}) => {
         )
     }
 };
-
-
 export default SignInForm;

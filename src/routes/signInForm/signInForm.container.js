@@ -8,11 +8,11 @@ const mapStateToProps = state => ({
     user: state.user
 });
 
-const mapDispatchToprops = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     openGoogleSignIn: () => dispatch(openGoogleSignIn())
 });
 
 export default connect(
     mapStateToProps,
-    mapDispatchToprops
+    mapDispatchToProps
 )(SignInForm);

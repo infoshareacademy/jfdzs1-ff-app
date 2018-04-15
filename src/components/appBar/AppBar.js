@@ -7,8 +7,9 @@ import FlatButton from 'material-ui/FlatButton';
 import {Link} from 'react-router-dom';
 import ActionAccountCircle from 'react-material-icons/icons/action/account-circle';
 import Avatar from 'material-ui/Avatar';
+import {user} from '../../components/menu/Menu';
 
-const NavigationBar = ({props}) => (
+const NavigationBar = (props) => (
     <AppBar
         className="AppBar"
         onLeftIconButtonClick={props.handleOnLeftIconButtonClick}
