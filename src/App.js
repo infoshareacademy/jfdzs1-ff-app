@@ -8,21 +8,55 @@ import Menu from './components/menu/Menu';
 import Dashboard from './routes/dashboard/Dashboard';
 import FavouriteCars from './routes/favouriteCars/FavouriteCars';
 import SearchResults from './routes/searchResults/SearchResults';
-import SignInForm from "./routes/signInForm/signInForm.container";
+import SignInForm from "./routes/signInForm/SignInForm";
 
 import {muiTheme} from "./styles";
-import Seba from './img/Seba.jpg';
+import {googleProvider, auth} from './firebase'
+
+// import Seba from './img/Seba.jpg';
 
 class App extends PureComponent {
 
     constructor(props) {
         super(props);
         this.state = {
-            userName: '', //Sebastian Maria Drzewiecki
-            userPhotoURL: Seba,
+            userName: '', //"Sebastian Maria Drzewiecki",
+            userPhotoURL: '',//Seba,
             open: false
         };
     }
+
+    signOut = () => {
+        console.log('out');
+    };
+
+    openGoogleSignIn = () => {
+        return () => {
+            auth.signInWithPopup(googleProvider)
+                .then(result => {
+                    console.log(result.user);
+                    this.setState({
+                        userName: result.user.displayName,
+                        userPhotoURL: result.user.photoURL
+                    }, () => {
+                        fetch('https://motogol-isa.firebaseio.com/' + result.user.displayName + '.json', {
+                            method: 'put',
+                            headers: {
+                                'Accept': 'application/json, text/plain',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                    userName: result.user.displayName,
+                                    userPhotoURL: result.user.photoURL,
+                                userMail: result.user.email
+                        })
+                    });
+                    })
+                })
+                .catch(error => alert('Unable to authorize with Google'));
+        }
+    };
+
     handleClose = () => this.setState({open: false});
 
     handleOnLeftIconButtonClick = () => this.setState({open: !this.state.open});
@@ -40,6 +74,7 @@ class App extends PureComponent {
                                 userPhotoURL={this.state.userPhotoURL}
                                 handleClick={this.handleClick}
                                 handleOnLeftIconButtonClick={this.handleOnLeftIconButtonClick}
+                                signOut={this.signOut}
                             />
                             <Menu
                                 handleClose={this.handleClose}
@@ -50,7 +85,9 @@ class App extends PureComponent {
                             <Route exact path='/' component={Dashboard}/>
                             <Route path='/favourite' component={FavouriteCars}/>
                             <Route path='/result' component={SearchResults}/>
-                        </div> : <SignInForm/>}
+                        </div> : <SignInForm
+                            openGoogleSignIn={this.openGoogleSignIn}
+                        />}
 
                 </MuiThemeProvider>
             </BrowserRouter>

@@ -7,7 +7,6 @@ import FlatButton from 'material-ui/FlatButton';
 import {Link} from 'react-router-dom';
 import ActionAccountCircle from 'react-material-icons/icons/action/account-circle';
 import Avatar from 'material-ui/Avatar';
-import {user} from '../../components/menu/Menu';
 
 const NavigationBar = (props) => (
     <AppBar
@@ -21,7 +20,7 @@ const NavigationBar = (props) => (
             <div className="user-area" >
                 {props.userPhotoURL ? <Avatar size={24} src={props.userPhotoURL}/> : <ActionAccountCircle/>}
                 <div className="user-name">{props.userName}</div>
-                <FlatButton label="Wyloguj"/>
+                <FlatButton type="button" className="sign-out" label="Wyloguj" onClick={props.signOut}/>
             </div>
         }
     >
