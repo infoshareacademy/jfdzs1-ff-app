@@ -13,44 +13,52 @@ import SignInForm from "./routes/signInForm/SignInForm";
 import {muiTheme} from "./styles";
 import {googleProvider, auth} from './firebase'
 
-// import Seba from './img/Seba.jpg';
+const URL = 'https://motogol-isa.firebaseio.com/';
 
 class App extends PureComponent {
 
     constructor(props) {
         super(props);
         this.state = {
-            userName: '', //"Sebastian Maria Drzewiecki",
-            userPhotoURL: '',//Seba,
+            userName: '',
+            userPhotoURL: '',
             open: false
         };
     }
 
     signOut = () => {
-        console.log('out');
+        fetch(URL + this.state.userName + '.json', {
+            method: 'delete',
+        })
+            .then(response => response.json())
+            .then(this.setState({
+                    userName: '',
+                    userPhotoURL: '',
+                    userMail: ''
+                })
+            );
     };
 
     openGoogleSignIn = () => {
         return () => {
             auth.signInWithPopup(googleProvider)
                 .then(result => {
-                    console.log(result.user);
                     this.setState({
                         userName: result.user.displayName,
                         userPhotoURL: result.user.photoURL
                     }, () => {
-                        fetch('https://motogol-isa.firebaseio.com/' + result.user.displayName + '.json', {
+                        fetch(URL + result.user.displayName + '.json', {
                             method: 'put',
                             headers: {
                                 'Accept': 'application/json, text/plain',
                                 'Content-Type': 'application/json'
                             },
                             body: JSON.stringify({
-                                    userName: result.user.displayName,
-                                    userPhotoURL: result.user.photoURL,
+                                userName: result.user.displayName,
+                                userPhotoURL: result.user.photoURL,
                                 userMail: result.user.email
-                        })
-                    });
+                            })
+                        });
                     })
                 })
                 .catch(error => alert('Unable to authorize with Google'));
