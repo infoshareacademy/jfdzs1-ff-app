@@ -11,7 +11,7 @@ import SearchResults from './routes/searchResults/SearchResults';
 import SignInForm from "./routes/signInForm/SignInForm";
 
 import {muiTheme} from "./styles";
-import {googleProvider, auth} from './firebase'
+import {provider, auth} from './firebase'
 
 const URL = 'https://motogol-isa.firebaseio.com/';
 
@@ -22,44 +22,55 @@ class App extends PureComponent {
         this.state = {
             userName: '',
             userPhotoURL: '',
-            open: false
+            userToken: '',
+            open: false,
+            isLoaded: false
         };
     }
 
-    signOut = () => {
-        fetch(URL + this.state.userName + '.json', {
-            method: 'delete',
-        })
-            .then(response => response.json())
-            .then(this.setState({
+    componentDidMount() {
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                this.setState({
+                    userName: user.displayName,
+                    userPhotoURL: user.photoURL,
+                    isLoaded: true
+                })
+            } else {
+                this.setState({
                     userName: '',
                     userPhotoURL: '',
-                    userMail: ''
+                    userMail: '',
+                    isLoaded: true
                 })
-            );
+            }
+        });
+    }
+
+    signOut = () => {
+        auth.signOut()
+            .catch(error => {
+                console.error('Signout Failed')
+            });
     };
 
     openGoogleSignIn = () => {
         return () => {
-            auth.signInWithPopup(googleProvider)
+            auth.signInWithPopup(provider)
                 .then(result => {
-                    this.setState({
-                        userName: result.user.displayName,
-                        userPhotoURL: result.user.photoURL
-                    }, () => {
-                        fetch(URL + result.user.displayName + '.json', {
-                            method: 'put',
-                            headers: {
-                                'Accept': 'application/json, text/plain',
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                userName: result.user.displayName,
-                                userPhotoURL: result.user.photoURL,
-                                userMail: result.user.email
-                            })
-                        });
-                    })
+                    fetch(URL + result.user.displayName + '.json', {
+                        method: 'put',
+                        headers: {
+                            'Accept': 'application/json, text/plain',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            userName: result.user.displayName,
+                            userPhotoURL: result.user.photoURL,
+                            userMail: result.user.email,
+                            userToken: result.credential.accessToken
+                        })
+                    });
                 })
                 .catch(error => alert('Unable to authorize with Google'));
         }
@@ -75,7 +86,7 @@ class App extends PureComponent {
         return (
             <BrowserRouter>
                 <MuiThemeProvider muiTheme={muiTheme}>
-                    {this.state.userName ?
+                    {this.state.isLoaded ? (this.state.userName ?
                         <div>
                             <AppBar
                                 userName={this.state.userName}
@@ -95,7 +106,7 @@ class App extends PureComponent {
                             <Route path='/result' component={SearchResults}/>
                         </div> : <SignInForm
                             openGoogleSignIn={this.openGoogleSignIn}
-                        />}
+                        />) : <div>Loading...</div>}
 
                 </MuiThemeProvider>
             </BrowserRouter>
