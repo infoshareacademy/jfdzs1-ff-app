@@ -4,6 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import AppBar from "./components/appBar/AppBar";
 import Menu from './components/menu/Menu';
+import Spinner from './components/spinner/Spinner';
 
 import Dashboard from './routes/dashboard/Dashboard';
 import FavouriteCars from './routes/favouriteCars/FavouriteCars';
@@ -31,6 +32,7 @@ class App extends PureComponent {
     componentDidMount() {
         auth.onAuthStateChanged(user => {
             if (user) {
+                console.log(user);
                 this.setState({
                     userName: user.displayName,
                     userPhotoURL: user.photoURL,
@@ -106,7 +108,7 @@ class App extends PureComponent {
                             <Route path='/result' component={SearchResults}/>
                         </div> : <SignInForm
                             openGoogleSignIn={this.openGoogleSignIn}
-                        />) : <div>Loading...</div>}
+                        />) : <Spinner/>}
 
                 </MuiThemeProvider>
             </BrowserRouter>

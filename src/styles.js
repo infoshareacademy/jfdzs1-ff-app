@@ -9,7 +9,7 @@ import {fade} from 'material-ui/utils/colorManipulator';
 import spacing from 'material-ui/styles/spacing';
 import typography from 'material-ui/styles/typography';
 
-const red = "#c30000";
+export const red = "#c30000";
 
 export const muiTheme = getMuiTheme({
 
