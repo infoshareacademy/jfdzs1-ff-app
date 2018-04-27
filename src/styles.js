@@ -8,14 +8,16 @@ import {
 import {fade} from 'material-ui/utils/colorManipulator';
 import spacing from 'material-ui/styles/spacing';
 import typography from 'material-ui/styles/typography';
+import raisedButton from 'material-ui/styles/getMuiTheme'
 
 export const red = "#c30000";
 
 export const muiTheme = getMuiTheme({
 
-    spacing: Object.assign(spacing, {
+    spacing: {
+        ...spacing,
         desktopKeylineIncrement: 70,
-    }),
+    },
     typography: typography,
     fontFamily: 'Roboto, sans-serif',
     palette: {
@@ -36,5 +38,28 @@ export const muiTheme = getMuiTheme({
     },
     svgIcon: {
         color: deepOrangeA200
-    }
+    },
+    raisedButton: {
+        ...raisedButton,
+        secondaryColor: red,
+        secondaryTextColor: white,
+    },
 });
+
+export const styles = {
+    button: {
+        margin: 12
+    },
+    exampleImageInput: {
+        cursor: 'pointer',
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        right: 0,
+        left: 0,
+        width: '100%',
+        opacity: 0
+    },
+};
+
+

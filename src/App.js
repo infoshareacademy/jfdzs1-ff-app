@@ -14,6 +14,15 @@ import SignInForm from "./routes/signInForm/SignInForm";
 import {muiTheme} from "./styles";
 import {provider, auth} from './firebase'
 
+// import ReactDOM from 'react-dom';
+import fontawesome from '@fortawesome/fontawesome'
+// import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import brands from '@fortawesome/fontawesome-free-brands'
+// import faCheckSquare from '@fortawesome/fontawesome-free-solid/faCheckSquare'
+// import faCoffee from '@fortawesome/fontawesome-free-solid/faCoffee'
+
+fontawesome.library.add(brands)
+
 const URL = 'https://motogol-isa.firebaseio.com/';
 
 class App extends PureComponent {
