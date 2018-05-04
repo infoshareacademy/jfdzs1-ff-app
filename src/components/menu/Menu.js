@@ -5,6 +5,7 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import './Menu.css'
 import motogol_logo from '../../img/motogol_logo.png';
+import PropTypes from 'prop-types';
 
 const Menu = ({handleClose, open, onRequestChange, ...props}) => (
     <div>
@@ -35,5 +36,11 @@ const Menu = ({handleClose, open, onRequestChange, ...props}) => (
         </Drawer>
     </div>
 );
+
+Menu.propTypes = {
+    handleClose: PropTypes.func,
+    onRequestChangeL: PropTypes.func,
+    open: PropTypes.func,
+};
 
 export default Menu;

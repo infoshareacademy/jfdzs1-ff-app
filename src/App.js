@@ -1,27 +1,24 @@
 import React, {PureComponent} from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import PropTypes from 'prop-types';
 
 import AppBar from "./components/appBar/AppBar";
 import Menu from './components/menu/Menu';
 import Spinner from './components/spinner/Spinner';
 
-import Dashboard from './routes/dashboard/Dashboard';
-import FavouriteCars from './routes/favouriteCars/FavouriteCars';
-import SearchResults from './routes/searchResults/SearchResults';
-import SignInForm from "./routes/signInForm/SignInForm";
+import Dashboard from './routes/dashboard/Dashboard'
+import FavouriteCars from './routes/favouriteCars/FavouriteCars'
+import SearchResults from './routes/searchResults/SearchResults'
+import SignInForm from "./routes/signInForm/SignInForm"
 
-import {muiTheme} from "./styles";
+import {muiTheme} from "./styles"
 import {provider, auth} from './firebase'
 
-// import ReactDOM from 'react-dom';
 import fontawesome from '@fortawesome/fontawesome'
-// import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import brands from '@fortawesome/fontawesome-free-brands'
-// import faCheckSquare from '@fortawesome/fontawesome-free-solid/faCheckSquare'
-// import faCoffee from '@fortawesome/fontawesome-free-solid/faCoffee'
 
-fontawesome.library.add(brands)
+fontawesome.library.add(brands);
 
 const URL = 'https://motogol-isa.firebaseio.com/';
 
@@ -32,7 +29,6 @@ class App extends PureComponent {
         this.state = {
             userName: '',
             userPhotoURL: '',
-            userToken: '',
             open: false,
             isLoaded: false
         };
@@ -41,7 +37,6 @@ class App extends PureComponent {
     componentDidMount() {
         auth.onAuthStateChanged(user => {
             if (user) {
-                console.log(user);
                 this.setState({
                     userName: user.displayName,
                     userPhotoURL: user.photoURL,
@@ -78,8 +73,7 @@ class App extends PureComponent {
                         body: JSON.stringify({
                             userName: result.user.displayName,
                             userPhotoURL: result.user.photoURL,
-                            userMail: result.user.email,
-                            userToken: result.credential.accessToken
+                            userMail: result.user.email
                         })
                     });
                 })
@@ -124,5 +118,13 @@ class App extends PureComponent {
         );
     }
 }
+
+App.propTypes = {
+    userName: PropTypes.string,
+    userPhotoURL: PropTypes.string,
+    open: PropTypes.bool,
+    isLoaded: PropTypes.bool,
+    userMail: PropTypes.string
+};
 
 export default App;

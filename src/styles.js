@@ -1,13 +1,12 @@
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import {
     grey500, grey700,
     grey100, grey300, grey400,
     white, darkBlack, fullBlack, deepOrangeA200
 
 } from 'material-ui/styles/colors'
-import {fade} from 'material-ui/utils/colorManipulator';
-import spacing from 'material-ui/styles/spacing';
-import typography from 'material-ui/styles/typography';
+import {fade} from 'material-ui/utils/colorManipulator'
+import spacing from 'material-ui/styles/spacing'
 import raisedButton from 'material-ui/styles/getMuiTheme'
 
 export const red = "#c30000";
@@ -18,7 +17,6 @@ export const muiTheme = getMuiTheme({
         ...spacing,
         desktopKeylineIncrement: 70,
     },
-    typography: typography,
     fontFamily: 'Roboto, sans-serif',
     palette: {
         primary1Color: white,
@@ -46,20 +44,19 @@ export const muiTheme = getMuiTheme({
     },
 });
 
-export const styles = {
+export const buttonStyle = {
     button: {
         margin: 12
-    },
-    exampleImageInput: {
-        cursor: 'pointer',
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        right: 0,
-        left: 0,
-        width: '100%',
-        opacity: 0
-    },
+    }
 };
 
-
+export const paperStyle = {
+    height: 150,
+    width: 300,
+    textAlign: 'center',
+    display: 'inline-block',
+    position: 'absolute',
+    top: '40%',
+    left: '50%',
+    transform: 'translate(-50%,-50%)',
+};

@@ -7,6 +7,7 @@ import FlatButton from 'material-ui/FlatButton';
 import {Link} from 'react-router-dom';
 import ActionAccountCircle from 'react-material-icons/icons/action/account-circle';
 import Avatar from 'material-ui/Avatar';
+import PropTypes from 'prop-types';
 
 const NavigationBar = (props) => (
     <AppBar
@@ -26,5 +27,13 @@ const NavigationBar = (props) => (
     >
     </AppBar>
 );
+
+NavigationBar.propTypes = {
+    openGoogleSignIn: PropTypes.func,
+    userPhotoURL: PropTypes.string,
+    userName: PropTypes.string,
+    signOut: PropTypes.func,
+    handleOnLeftIconButtonClick: PropTypes.func
+};
 
 export default NavigationBar;
