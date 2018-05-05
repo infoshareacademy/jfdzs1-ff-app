@@ -1,22 +1,22 @@
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import {
     grey500, grey700,
     grey100, grey300, grey400,
     white, darkBlack, fullBlack, deepOrangeA200
 
 } from 'material-ui/styles/colors'
-import {fade} from 'material-ui/utils/colorManipulator';
-import spacing from 'material-ui/styles/spacing';
-import typography from 'material-ui/styles/typography';
+import {fade} from 'material-ui/utils/colorManipulator'
+import spacing from 'material-ui/styles/spacing'
+import raisedButton from 'material-ui/styles/getMuiTheme'
 
-const red = "#c30000";
+export const red = "#c30000";
 
 export const muiTheme = getMuiTheme({
 
-    spacing: Object.assign(spacing, {
+    spacing: {
+        ...spacing,
         desktopKeylineIncrement: 70,
-    }),
-    typography: typography,
+    },
     fontFamily: 'Roboto, sans-serif',
     palette: {
         primary1Color: white,
@@ -36,5 +36,27 @@ export const muiTheme = getMuiTheme({
     },
     svgIcon: {
         color: deepOrangeA200
-    }
+    },
+    raisedButton: {
+        ...raisedButton,
+        secondaryColor: red,
+        secondaryTextColor: white,
+    },
 });
+
+export const buttonStyle = {
+    button: {
+        margin: 12
+    }
+};
+
+export const paperStyle = {
+    height: 150,
+    width: 300,
+    textAlign: 'center',
+    display: 'inline-block',
+    position: 'absolute',
+    top: '40%',
+    left: '50%',
+    transform: 'translate(-50%,-50%)',
+};
